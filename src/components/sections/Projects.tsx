@@ -3,6 +3,8 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GlowCard } from "@/components/effects/GlowCard";
+import { DotGrid } from "@/components/effects/DotGrid";
 
 const projects = [
   {
@@ -45,7 +47,8 @@ export function Projects() {
 
   return (
     <section id="projects" className="py-24 relative">
-      <div className="container px-4">
+      <DotGrid />
+      <div className="container px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -63,18 +66,18 @@ export function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="glass rounded-2xl overflow-hidden hover-lift group"
               >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
-                </div>
-                
-                <div className="p-6">
+                <GlowCard className="h-full overflow-hidden">
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-60" />
+                  </div>
+                  
+                  <div className="p-6">
                   <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                   <p className="text-muted-foreground mb-4">{project.description}</p>
                   
@@ -103,7 +106,8 @@ export function Projects() {
                       </a>
                     </Button>
                   </div>
-                </div>
+                  </div>
+                </GlowCard>
               </motion.div>
             ))}
           </div>

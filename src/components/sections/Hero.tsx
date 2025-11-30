@@ -1,12 +1,22 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sparkles } from "@/components/effects/Sparkles";
+import { LightRays } from "@/components/effects/LightRays";
+import { FloatingCube } from "@/components/effects/FloatingCube";
+import { FlipWords } from "@/components/effects/FlipWords";
+import { TypeWriter } from "@/components/effects/TypeWriter";
 
 export function Hero() {
+  const roles = ["Full Stack Developer", "Creative Problem Solver", "Tech Enthusiast", "UI/UX Designer"];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated background gradient */}
+      {/* Animated background effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5" />
+      <Sparkles />
+      <LightRays />
+      <FloatingCube />
       
       {/* Radial glow effects */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
@@ -28,14 +38,14 @@ export function Hero() {
             <span className="text-gradient">Your Name</span>
           </motion.h1>
 
-          <motion.p
+          <motion.div
             className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Full Stack Developer | Creative Problem Solver | Tech Enthusiast
-          </motion.p>
+            <FlipWords words={roles} className="text-2xl md:text-3xl font-semibold" />
+          </motion.div>
 
           <motion.div
             className="flex flex-wrap gap-4 justify-center"

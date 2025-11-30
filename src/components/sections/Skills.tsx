@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Code2, Database, Globe, Palette, Server, Smartphone } from "lucide-react";
+import { GlowCard } from "@/components/effects/GlowCard";
+import { BackgroundBeams } from "@/components/effects/BackgroundBeams";
 
 const skills = [
   {
@@ -42,7 +44,8 @@ export function Skills() {
 
   return (
     <section id="skills" className="py-24 relative">
-      <div className="container px-4">
+      <BackgroundBeams />
+      <div className="container px-4 relative z-10">
         <motion.div
           ref={ref}
           initial={{ opacity: 0, y: 50 }}
@@ -62,20 +65,23 @@ export function Skills() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="glass rounded-2xl p-6 hover-lift group"
                 >
-                  <div className="mb-4 p-3 rounded-xl bg-primary/10 w-fit group-hover:bg-primary/20 transition-colors">
-                    <Icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
-                  <ul className="space-y-2">
-                    {skill.items.map((item) => (
-                      <li key={item} className="text-muted-foreground flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                  <GlowCard className="h-full">
+                    <div className="p-6">
+                      <div className="mb-4 p-3 rounded-xl bg-primary/10 w-fit group-hover:bg-primary/20 transition-colors">
+                        <Icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-3">{skill.title}</h3>
+                      <ul className="space-y-2">
+                        {skill.items.map((item) => (
+                          <li key={item} className="text-muted-foreground flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </GlowCard>
                 </motion.div>
               );
             })}
