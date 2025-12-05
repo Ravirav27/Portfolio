@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
-import { getViews } from './api/get-views.js';
+import { getViews } from './api/get-views.ts';
 
 // Load environment variables from .env.local
 dotenv.config({ path: '.env.local' });
