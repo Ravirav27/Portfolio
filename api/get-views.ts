@@ -3,11 +3,10 @@ import { Request, Response } from 'express';
 export async function getViews(req: Request, res: Response) {
   try {
     const hitsUrl = 'https://hits.sh/ravishankar-portfolio.com.svg?t=' + Date.now();
-    
-    // Try multiple CORS proxies as fallback
+
     const proxies = [
       'https://api.allorigins.win/raw?url=' + encodeURIComponent(hitsUrl),
-      'https://corsproxy.io/?' + encodeURIComponent(hitsUrl),
+      'https://corsproxy.io/?url=' + encodeURIComponent(hitsUrl), // FIXED
     ];
 
     let svgText = null;
@@ -15,10 +14,11 @@ export async function getViews(req: Request, res: Response) {
 
     for (const proxyUrl of proxies) {
       try {
-        const response = await fetch(proxyUrl, { 
+        const response = await fetch(proxyUrl, {
           cache: 'no-store',
           headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
           },
         });
 
@@ -26,8 +26,8 @@ export async function getViews(req: Request, res: Response) {
           svgText = await response.text();
           break;
         }
-      } catch (e) {
-        lastError = e;
+      } catch (err) {
+        lastError = err;
         continue;
       }
     }
@@ -36,29 +36,23 @@ export async function getViews(req: Request, res: Response) {
       throw lastError || new Error('All CORS proxies failed');
     }
 
-    // Parse the SVG to extract the view count
+    // ---------- PARSE VIEW COUNT -----------
     let views = null;
 
-    // Pattern 1: aria-label format
+    // Pattern 1
     let match = svgText.match(/aria-label="hits:\s*(\d+)"/i);
-    if (match) {
-      views = parseInt(match[1], 10);
-    }
+    if (match) views = Number(match[1]);
 
-    // Pattern 2: title tag format
+    // Pattern 2
     if (!views) {
       match = svgText.match(/<title>hits:\s*(\d+)<\/title>/i);
-      if (match) {
-        views = parseInt(match[1], 10);
-      }
+      if (match) views = Number(match[1]);
     }
 
-    // Pattern 3: Generic number in tags
+    // Pattern 3
     if (!views) {
       match = svgText.match(/>\s*(\d+)\s*</);
-      if (match) {
-        views = parseInt(match[1], 10);
-      }
+      if (match) views = Number(match[1]);
     }
 
     res.json({ views });
