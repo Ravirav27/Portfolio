@@ -1,12 +1,11 @@
 // dev-server.js - Local development server for API routes
-// Run this with: node dev-server.js
+// Run this with: tsx dev-server.js
 // It will start on port 3001 and proxy /api routes from Vite on port 8080
 
 import dotenv from 'dotenv';
 import express from 'express';
 import nodemailer from 'nodemailer';
 import cors from 'cors';
-import { getViews } from './api/get-views.ts';
 
 // Load environment variables from .env.local
 dotenv.config({ path: '.env.local' });
@@ -41,18 +40,58 @@ app.get('/api/health', (req, res) => {
 });
 
 // View counter endpoint
-app.get('/api/get-views', getViews);
+app.get('/api/get-views', async (req, res) => {
+  try {
+    const hitsUrl = 'https://hits.sh/ravishankar-portfolio.com.svg?t=' + Date.now();
+    
+    const proxies = [
+      'https://api.allorigins.win/raw?url=' + encodeURIComponent(hitsUrl),
+      'https://corsproxy.io/?' + encodeURIComponent(hitsUrl),
+    ];
+
+    let svgText = null;
+    for (const proxyUrl of proxies) {
+      try {
+        const response = await fetch(proxyUrl, { 
+          cache: 'no-store',
+          headers: { 'User-Agent': 'Mozilla/5.0' },
+        });
+        if (response.ok) {
+          svgText = await response.text();
+          break;
+        }
+      } catch (e) {
+        continue;
+      }
+    }
+
+    if (!svgText) throw new Error('All proxies failed');
+
+    let views = null;
+    let match = svgText.match(/aria-label="hits:\s*(\d+)"/i);
+    if (match) views = parseInt(match[1], 10);
+    if (!views) {
+      match = svgText.match(/<title>hits:\s*(\d+)<\/title>/i);
+      if (match) views = parseInt(match[1], 10);
+    }
+    if (!views) {
+      match = svgText.match(/>\s*(\d+)\s*</);
+      if (match) views = parseInt(match[1], 10);
+    }
+
+    res.json({ views });
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch view count', views: null });
+  }
+});
 
 // Email endpoint
 app.post('/api/send-email', async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
 
-    // Validate inputs
     if (!name || !email || !subject || !message) {
-      return res.status(400).json({
-        error: 'Missing required fields',
-      });
+      return res.status(400).json({ error: 'Missing required fields' });
     }
 
     const mailOptions = {
@@ -71,7 +110,6 @@ app.post('/api/send-email', async (req, res) => {
     };
 
     await transporter.sendMail(mailOptions);
-
     console.log(`✅ Email sent from ${email}: "${subject}"`);
 
     return res.status(200).json({
