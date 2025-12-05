@@ -7,10 +7,23 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
+        xs: "320px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
         "2xl": "1400px",
       },
+    },
+    screens: {
+      xs: "320px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
+      "2xl": "1400px",
     },
     extend: {
       colors: {
@@ -57,6 +70,25 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontSize: {
+        xs: ["0.75rem", { lineHeight: "1rem" }],
+        sm: ["0.875rem", { lineHeight: "1.25rem" }],
+        base: ["1rem", { lineHeight: "1.5rem" }],
+        lg: ["1.125rem", { lineHeight: "1.75rem" }],
+        xl: ["1.25rem", { lineHeight: "1.75rem" }],
+        "2xl": ["1.5rem", { lineHeight: "2rem" }],
+        "3xl": ["clamp(1.875rem, 5vw, 2.25rem)", { lineHeight: "2.5rem" }],
+        "4xl": ["clamp(2.25rem, 6vw, 3rem)", { lineHeight: "3.5rem" }],
+        "5xl": ["clamp(3rem, 7vw, 3.75rem)", { lineHeight: "1" }],
+        "6xl": ["clamp(3.75rem, 8vw, 4.5rem)", { lineHeight: "1" }],
+        "7xl": ["clamp(4.5rem, 10vw, 5.625rem)", { lineHeight: "1" }],
+      },
+      spacing: {
+        "safe-top": "max(1rem, env(safe-area-inset-top))",
+        "safe-bottom": "max(1rem, env(safe-area-inset-bottom))",
+        "safe-left": "max(1rem, env(safe-area-inset-left))",
+        "safe-right": "max(1rem, env(safe-area-inset-right))",
+      },
       keyframes: {
         "accordion-down": {
           from: {
@@ -74,10 +106,15 @@ export default {
             height: "0",
           },
         },
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        move: "move 5s linear infinite",
       },
     },
   },

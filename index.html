@@ -2,22 +2,97 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name - Full Stack Developer Portfolio</title>
-    <meta name="description" content="Full Stack Developer specializing in React, TypeScript, and modern web technologies. View my projects and get in touch." />
-    <meta name="author" content="Your Name" />
-
-    <meta property="og:title" content="Your Name - Full Stack Developer Portfolio" />
-    <meta property="og:description" content="Full Stack Developer specializing in React, TypeScript, and modern web technologies. View my projects and get in touch." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes, maximum-scale=5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <base href="/" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Ravishankar S | AI/ML Engineer & Full Stack Developer at Amazon</title>
+    <meta name="title" content="Ravishankar S | AI/ML Engineer & Full Stack Developer at Amazon" />
+    <meta name="description" content="Ravishankar S - Software Developer & AI/ML Engineer at Amazon. Specialized in Python, Java, Node.js, React, Deep Learning, and Full Stack Development. IEEE Published Researcher with experience at Barclays, BNY Mellon. GDG MIT Lead." />
+    <meta name="author" content="Ravishankar S" />
+    <meta name="theme-color" content="#7c3aed" />
+    
+    <!-- Enhanced Keywords for SEO -->
+    <meta name="keywords" content="Ravishankar S, Software Developer, AI Engineer, ML Engineer, Full Stack Developer, Python Developer, Java Developer, Node.js Developer, React Developer, Deep Learning, Machine Learning, IEEE Published, Amazon Developer, Portfolio, Bangalore Developer, Indian Software Engineer, Web Development, AI/ML Projects" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/RS1 logo_bgf.png?v=1.0" />
+    <link rel="shortcut icon" type="image/png" href="/RS1 logo_bgf.png?v=1.0" />
+    <link rel="apple-touch-icon" href="/RS1 logo_bgf.png?v=1.0" />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
+    <meta property="og:url" content="https://ravishankar-portfolio.com" />
+    <meta property="og:title" content="Ravishankar S | AI/ML Engineer & Full Stack Developer" />
+    <meta property="og:description" content="Explore the portfolio of Ravishankar S - AI/ML Engineer at Amazon, IEEE Published Researcher, and Full Stack Developer. Specialized in Python, Java, React, Deep Learning, and Web Development." />
+    <meta property="og:image" content="/RS1 logo_bgf.png?v=1.0" />
+    <meta property="og:site_name" content="Ravishankar S Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- LinkedIn -->
+    <meta name="linkedin:title" content="Ravishankar S | Software Engineer & AI/ML Expert" />
+    
+    <!-- Twitter / X (if needed in future) -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Ravishankar S | AI/ML Engineer & Full Stack Developer" />
+    <meta name="twitter:description" content="Check out Ravishankar S's portfolio - AI/ML Engineer at Amazon, IEEE Published, Full Stack Developer specializing in Python, Java, React, and Deep Learning." />
+    <meta name="twitter:image" content="/RS1 logo_bgf.png?v=1.0" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ravishankar-portfolio.com" />
+    
+    <!-- Language Alternates -->
+    <link rel="alternate" hreflang="en" href="https://ravishankar-portfolio.com" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ravishankar S",
+      "jobTitle": "Software Engineer & AI/ML Specialist",
+      "image": "/RS1 logo_bgf.png",
+      "email": "ravishankarv28@gmail.com",
+      "url": "https://ravishankar-portfolio.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/ravishankarv28/",
+        "https://github.com/Ravi2ie"
+      ],
+      "workLocation": {
+        "@type": "Place",
+        "name": "Bangalore, India"
+      },
+      "knowsAbout": ["Python", "Java", "JavaScript", "React", "Node.js", "Machine Learning", "Deep Learning", "Full Stack Development", "AI/ML", "Web Development"],
+      "description": "Software Engineer and AI/ML Specialist at Amazon with expertise in Python, Java, React, and Deep Learning. IEEE Published Researcher."
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Ravishankar S Portfolio",
+      "url": "https://ravishankar-portfolio.com",
+      "description": "Professional portfolio showcasing AI/ML projects, full stack development work, and technical expertise",
+      "creator": {
+        "@type": "Person",
+        "name": "Ravishankar S"
+      }
+    }
+    </script>
   </head>
 
   <body>
+    <script>
+      // Force dark mode on initial load
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('portfolio-theme', 'dark');
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

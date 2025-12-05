@@ -1,0 +1,129 @@
+.lightning-intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+  transition: opacity 0.8s ease-out;
+}
+
+.lightning-intro.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.6s ease-in;
+}
+
+.intro-content.show {
+  opacity: 1;
+}
+
+.intro-name {
+  font-size: clamp(2rem, 8vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin: 0;
+  
+  /* Metallic Base Color */
+  background: linear-gradient(
+    180deg,
+    #e8e8e8 0%,
+    #c0c0c0 20%,
+    #808080 50%,
+    #a9a9a9 80%,
+    #f0f0f0 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Metallic Shine Effect */
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+          drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))
+          drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  
+  /* Text Shadow for Depth */
+  text-shadow: 
+    /* Bottom shadow for depth */
+    0 2px 4px rgba(0, 0, 0, 0.6),
+    /* Subtle blue glow */
+    0 0 15px rgba(0, 150, 255, 0.4),
+    /* Cyan accent */
+    0 0 25px rgba(0, 212, 255, 0.3),
+    /* Inner light reflection */
+    -1px -1px 2px rgba(255, 255, 255, 0.8),
+    1px 1px 2px rgba(0, 0, 0, 0.8);
+  
+  /* Animation: Metallic pulse with light reflection */
+  animation: metallicShine 3s ease-in-out infinite;
+  
+  /* Chrome effect with perspective */
+  position: relative;
+  transform: perspective(1000px) rotateX(0deg);
+}
+
+@keyframes metallicShine {
+  0% {
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      0 0 15px rgba(0, 150, 255, 0.4),
+      0 0 25px rgba(0, 212, 255, 0.3),
+      -1px -1px 2px rgba(255, 255, 255, 0.6),
+      1px 1px 2px rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))
+            brightness(1);
+  }
+  
+  50% {
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      0 0 20px rgba(0, 150, 255, 0.6),
+      0 0 35px rgba(0, 212, 255, 0.5),
+      -2px -2px 4px rgba(255, 255, 255, 1),
+      2px 2px 4px rgba(0, 0, 0, 1);
+    filter: drop-shadow(0 0 3px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 6px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 12px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 3px 6px rgba(0, 0, 0, 0.6))
+            brightness(1.1);
+  }
+  
+  100% {
+    text-shadow: 
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      0 0 15px rgba(0, 150, 255, 0.4),
+      0 0 25px rgba(0, 212, 255, 0.3),
+      -1px -1px 2px rgba(255, 255, 255, 0.6),
+      1px 1px 2px rgba(0, 0, 0, 0.8);
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 4px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5))
+            brightness(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-name {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+  }
+}

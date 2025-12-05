@@ -37,9 +37,18 @@ export function Navigation() {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a href="#" className="text-2xl font-bold text-gradient">
-            Portfolio
+          {/* Logo with Image */}
+          <a href="#" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            {/* Circular Logo Image */}
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gradient-to-r from-purple-500 to-cyan-500 flex-shrink-0">
+              <img 
+                src="/RS1 logo.png" 
+                alt="RS1 Logo" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Portfolio Text */}
+            <span className="text-2xl font-bold text-gradient">Portfolio</span>
           </a>
 
           {/* Desktop Navigation */}

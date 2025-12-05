@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 
 interface TextGenerateProps {
-  text: string;
+  text?: string;
+  items?: string[];
   className?: string;
 }
 
-export function TextGenerate({ text, className = "" }: TextGenerateProps) {
-  const words = text.split(" ");
+export function TextGenerate({ text, items, className = "" }: TextGenerateProps) {
+  const isArray = items && items.length > 0;
+  const content = isArray ? items : text ? text.split(" ") : [];
 
   const container = {
     hidden: { opacity: 0 },
@@ -34,6 +36,25 @@ export function TextGenerate({ text, className = "" }: TextGenerateProps) {
     },
   };
 
+  if (isArray) {
+    return (
+      <motion.ul
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className={`space-y-3 ${className}`}
+      >
+        {items.map((item, index) => (
+          <motion.li key={index} variants={child} className="flex gap-3">
+            <span className="text-primary font-bold flex-shrink-0 mt-1">•</span>
+            <span>{item}</span>
+          </motion.li>
+        ))}
+      </motion.ul>
+    );
+  }
+
   return (
     <motion.div
       variants={container}
@@ -42,7 +63,7 @@ export function TextGenerate({ text, className = "" }: TextGenerateProps) {
       viewport={{ once: true }}
       className={className}
     >
-      {words.map((word, index) => (
+      {content.map((word, index) => (
         <motion.span key={index} variants={child} className="inline-block mr-2">
           {word}
         </motion.span>
