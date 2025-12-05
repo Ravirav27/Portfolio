@@ -1,7 +1,5 @@
 import nodemailer from 'nodemailer';
-import { NextRequest, NextResponse } from 'next/server';
-
-export const runtime = 'nodejs';
+import { Request, Response } from 'express';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -11,23 +9,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function POST(request: NextRequest) {
-  if (request.method !== 'POST') {
-    return NextResponse.json(
-      { error: 'Method not allowed' },
-      { status: 405 }
-    );
-  }
-
+export async function sendEmail(req: Request, res: Response) {
   try {
-    const { name, email, subject, message } = await request.json();
+    const { name, email, subject, message } = req.body;
 
     // Validate inputs
     if (!name || !email || !subject || !message) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      );
+      return res.status(400).json({
+        error: 'Missing required fields',
+      });
     }
 
     const mailOptions = {
@@ -47,15 +37,18 @@ export async function POST(request: NextRequest) {
 
     await transporter.sendMail(mailOptions);
 
-    return NextResponse.json(
-      { success: true, message: 'Email sent successfully' },
-      { status: 200 }
-    );
+    console.log(`✅ Email sent from ${email}: "${subject}"`);
+
+    return res.status(200).json({
+      success: true,
+      message: 'Email sent successfully',
+    });
   } catch (error) {
-    console.error('Email error:', error);
-    return NextResponse.json(
-      { error: 'Failed to send email' },
-      { status: 500 }
-    );
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error('❌ Email error:', errorMessage);
+    return res.status(500).json({
+      error: 'Failed to send email',
+      details: errorMessage,
+    });
   }
 }
