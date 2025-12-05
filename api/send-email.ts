@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { Request, Response } from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -9,7 +9,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-export async function sendEmail(req: Request, res: Response) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  // Only allow POST
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     const { name, email, subject, message } = req.body;
 
