@@ -1,73 +1,245 @@
-# Welcome to your Lovable project
+# 🌟 Radiant Portfolio
 
-## Project info
+A modern, responsive, and feature-rich portfolio website built with cutting-edge web technologies. Showcasing projects, skills, and professional achievements with stunning visual effects and smooth animations.
 
-**URL**: https://lovable.dev/projects/d62f4028-f53b-49d3-b253-08a46ffd97de
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FRavi2ie%2Fradiant-portfolio)
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+- **🎨 Modern Design** - Beautiful gradient UI with glassmorphism effects
+- **📱 Fully Responsive** - Optimized for all device sizes (mobile, tablet, desktop)
+- **⚡ High Performance** - Built with Vite for blazing-fast load times
+- **🎭 Smooth Animations** - Framer Motion and GSAP animations
+- **👁️ View Counter** - Tracks portfolio visits using hits.sh service
+- **📧 Contact Form** - Integrated email functionality with Nodemailer
+- **🌙 Dark Mode** - Built-in theme support (light/dark)
+- **♿ Accessibility** - WCAG compliant with semantic HTML
+- **🔍 SEO Optimized** - Meta tags, sitemap, and robots.txt included
+- **🎯 Project Showcase** - Responsive carousel displaying featured projects
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d62f4028-f53b-49d3-b253-08a46ffd97de) and start prompting.
+### Frontend
+- **React 18** - UI library with TypeScript
+- **Vite** - Next-generation build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **GSAP** - Professional animation platform
+- **Lucide React** - Icon library
+- **Devicon** - Technology icons
 
-Changes made via Lovable will be committed automatically to this repo.
+### Backend
+- **Express.js** - Node.js web framework
+- **Nodemailer** - Email sending library
+- **CORS** - Cross-Origin Resource Sharing
 
-**Use your preferred IDE**
+### External Services
+- **hits.sh** - Page view counter
+- **allorigins.win / corsproxy.io** - CORS proxy services
+- **Gmail API** - Email service
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Quick Start
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Prerequisites
+- Node.js 16+ 
+- npm or yarn
+- Git
 
-Follow these steps:
+### Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repository
+git clone https://github.com/Ravi2ie/radiant-portfolio.git
+cd radiant-portfolio
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install --legacy-peer-deps
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Create environment file
+cp .env.example .env.local
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+# Add your credentials to .env.local
+# GMAIL_EMAIL=your-email@gmail.com
+# GMAIL_APP_PASSWORD=your_16_char_app_password
 ```
 
-**Edit a file directly in GitHub**
+### Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Start Vite dev server (Terminal 1)
+npm run dev
 
-**Use GitHub Codespaces**
+# In another terminal, start the API server (Terminal 2)
+node dev-server.js
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Open http://localhost:5173 in your browser
+```
 
-## What technologies are used for this project?
+### Build for Production
 
-This project is built with:
+```bash
+npm run build
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Preview production build
+npm run preview
+```
 
-## How can I deploy this project?
+## 📁 Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/d62f4028-f53b-49d3-b253-08a46ffd97de) and click on Share -> Publish.
+```
+radiant-portfolio/
+├── src/
+│   ├── components/
+│   │   ├── ui/                 # UI components (cards, buttons, etc.)
+│   │   ├── sections/           # Page sections (Hero, Projects, etc.)
+│   │   ├── effects/            # Visual effects (animations, gradients)
+│   │   └── Navigation.tsx
+│   ├── hooks/
+│   │   └── useViewCounter.ts   # View counter hook
+│   ├── lib/
+│   │   └── utils.ts            # Utility functions
+│   ├── pages/
+│   │   ├── Index.tsx           # Home page
+│   │   └── NotFound.tsx        # 404 page
+│   ├── App.tsx                 # Main app component
+│   └── main.tsx                # Entry point
+├── api/
+│   ├── get-views.ts            # View counter API
+│   └── send-email.ts           # Email API
+├── public/                      # Static assets
+├── dev-server.js               # Development API server
+├── vite.config.ts              # Vite configuration
+├── tailwind.config.ts          # Tailwind CSS config
+├── tsconfig.json               # TypeScript config
+└── package.json                # Dependencies & scripts
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 🔐 Environment Variables
 
-Yes, you can!
+Create a `.env.local` file in the root directory:
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+```env
+# Gmail Configuration (for contact form)
+GMAIL_EMAIL=your-email@gmail.com
+GMAIL_APP_PASSWORD=your_16_character_app_password
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### Getting Gmail App Password
+1. Enable 2-Factor Authentication on your Google Account
+2. Go to [Google Account Security](https://myaccount.google.com/security)
+3. Find "App passwords" and generate a new one for "Mail" on "Windows Computer"
+4. Use this 16-character password in `GMAIL_APP_PASSWORD`
+
+## 📦 Available Scripts
+
+```bash
+npm run dev          # Start development server
+npm run build        # Build for production
+npm run preview      # Preview production build
+npm run lint         # Run ESLint
+npm run format       # Format code with Prettier
+```
+
+## 🌐 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Go to [Vercel Dashboard](https://vercel.com)
+3. Click "New Project" → Import your repository
+4. Set environment variables in Vercel settings:
+   - `GMAIL_EMAIL`
+   - `GMAIL_APP_PASSWORD`
+5. Deploy!
+
+### Deploy to Other Platforms
+
+The project can be deployed to:
+- Netlify
+- AWS Amplify
+- GitHub Pages
+- Railway
+- Render
+
+## 📊 Features in Detail
+
+### View Counter
+- Tracks unique page views using hits.sh
+- Displays in the Hero section
+- Uses CORS proxies for reliability
+- Graceful error handling
+
+### Contact Form
+- Validates email input
+- Sends emails via Gmail
+- Responsive design
+- Success/error feedback
+
+### Project Carousel
+- Responsive display (1 card mobile, 2 tablet, 3 desktop)
+- Smooth animations and transitions
+- Shows complete project descriptions
+- All technologies listed
+- Direct GitHub links
+
+### Responsive Design
+- Mobile-first approach
+- Breakpoints: xs (320px), sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1400px)
+- Safe area support for notched devices
+- Fluid typography with clamp()
+
+## 🐛 Troubleshooting
+
+### 500 Error on View Counter
+- Check internet connection
+- Ensure dev-server.js is running
+- CORS proxies might be down - auto-fallback is in place
+
+### Email Not Sending
+- Verify `GMAIL_EMAIL` and `GMAIL_APP_PASSWORD` in .env.local
+- Enable 2FA on Gmail account
+- Generate new app password if expired
+- Check spam folder
+
+### Build Errors
+- Clear `node_modules` and reinstall: `rm -rf node_modules && npm install --legacy-peer-deps`
+- Check Node.js version (16+)
+- Ensure all environment variables are set
+
+## 📱 Browser Support
+
+- Chrome/Edge 90+
+- Firefox 88+
+- Safari 14+
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to:
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📞 Contact
+
+- **GitHub**: [@Ravi2ie](https://github.com/Ravi2ie)
+- **Portfolio**: [Your Portfolio URL]
+- **Email**: [Your Email]
+
+## 🙏 Acknowledgments
+
+- Lovable.dev for initial scaffolding
+- Vercel for hosting platform
+- Framer Motion for animations
+- Tailwind CSS for styling
+- All open-source contributors
+
+---
+
+Made with ❤️ by Ravishankar
