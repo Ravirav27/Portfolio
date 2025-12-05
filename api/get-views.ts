@@ -2,7 +2,7 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   try {
-    const hitsUrl = 'https://hits.sh/ravishankar-portfolio.com.svg?t=' + Date.now();
+    const hitsUrl = 'https://hits.sh/ravishankars.vercel.app.svg?t=' + Date.now();
     
     // Try multiple CORS proxies as fallback
     const proxies = [
