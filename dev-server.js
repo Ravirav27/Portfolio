@@ -42,7 +42,7 @@ app.get('/api/health', (req, res) => {
 // View counter endpoint
 app.get('/api/get-views', async (req, res) => {
   try {
-    const hitsUrl = 'https://hits.sh/ravishankar-portfolio.com.svg?t=' + Date.now();
+    const hitsUrl = 'https://hits.sh/ravishankars.vercel.app.svg?t=' + Date.now();
     
     const proxies = [
       'https://api.allorigins.win/raw?url=' + encodeURIComponent(hitsUrl),
