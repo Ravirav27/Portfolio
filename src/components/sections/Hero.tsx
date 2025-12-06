@@ -21,7 +21,7 @@ export function Hero() {
   "Finalist at GUVI Hackathon 2025",
   "IEEE Published Researcher - Hybrid Ensemble Model for Oral Cancer Detection (ICNGCS 2025)",
   "Web Development Lead at Google Developers Group",
-  "Experienced Software Development",
+  "Experienced Software Developer",
   "Experienced AI/ML Software Engineer",
   "Elite in Competitive Programming from NPTEL (IIT Kharagpur)"
 ]
