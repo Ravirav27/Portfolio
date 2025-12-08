@@ -31,7 +31,7 @@ const education = [
   //   description: "Specialized in Artificial Intelligence and Machine Learning",
   // },
   {
-    degree: "Bachloar of Technology",
+    degree: "Bachelor of Technology",
     specialization: "Information Technology",
     college: "Madras Institute of Technology",
     location: "Anna University, Chennai",
